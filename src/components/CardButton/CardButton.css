@@ -1,0 +1,16 @@
+.card-button {
+  display: block;
+  border-radius: 6px;
+  padding: 8px 30px;
+  font-family: inherit;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.25s;
+  border: none;
+  color: #fff;
+  background-color: rgba(22, 12, 12, 0.349);
+  text-align: start;
+}
+.card-button:hover {
+  background-color: rgba(87, 61, 61, 0.349);
+}
