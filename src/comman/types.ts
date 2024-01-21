@@ -4,4 +4,11 @@ export type JournalItemPropsType = {
   text: string;
 };
 
+export type ButtonPropsType = {
+  text: string;
+  onClick: () => void;
+};
 
+export type JournalFormPropsType = {
+  addJournalItem: (item: FormDataEntryValue) => void;
+};

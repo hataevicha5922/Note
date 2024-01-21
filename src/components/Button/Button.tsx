@@ -1,19 +1,10 @@
-import { useState } from "react";
+import { FC } from "react";
 import "./Button.css";
+import { ButtonPropsType } from "../../comman/types";
 
-export const Button = () => {
-  const [text, setText] = useState("Save");
-  const cliked = () => {
-    if (text === "Save") {
-      setText("Close");
-    } else {
-      setText("Save");
-    }
-
-    console.log("Hello");
-  };
+export const Button: FC<ButtonPropsType> = ({ text, onClick }) => {
   return (
-    <button className="button accent" onClick={cliked}>
+    <button className="button accent" onClick={onClick}>
       {text}
     </button>
   );

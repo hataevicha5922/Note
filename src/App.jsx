@@ -1,5 +1,3 @@
-import { ChangeEvent } from "react";
-
 import "./App.css";
 import { JournalItem } from "./components/JournalItem/JournalItem";
 import { CardButton } from "./components/CardButton/CardButton";
@@ -8,48 +6,54 @@ import { Body } from "./Layout/Body/Body";
 import { Header } from "./components/Header/Header";
 import { JournalList } from "./components/JournalList/JournalList";
 import { JournaAddButton } from "./components/JournalAddButton/JournalAddButton";
+import { JournalForm } from "./components/JournalForm/JournalForm";
+import { useState } from "react";
 
 function App() {
-  const data = [
+  const INITIAL_DATA = [
     {
+      id: 1,
       title: "Подготовка к работе",
       text: "Работа интересна",
       date: new Date(),
     },
     {
+      id: 2,
       title: "Поход в горы",
       text: "Горные проходы открывают удивительные природные ландшафты",
       date: new Date(),
     },
   ];
 
-  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
+  const [items, setItems] = useState(INITIAL_DATA);
+
+  const addJournalItem = (item) => {
+    setItems((oldItems) => [
+      ...oldItems,
+      {
+        text: item.text,
+        title: item.title,
+        date: new Date(item.date),
+        id: Math.max(...(oldItems.map((i) => i.id) + 1)),
+      },
+    ]);
   };
+
   return (
     <div className="app">
       <LeftPanel>
         <Header />
         <JournaAddButton />
         <JournalList>
-          <CardButton>
-            <JournalItem
-              title={data[0].title}
-              date={data[0].date}
-              text={data[0].text}
-            />
-          </CardButton>
-          <CardButton>
-            <JournalItem
-              title={data[1].title}
-              date={data[1].date}
-              text={data[1].text}
-            />
-          </CardButton>
+          {items.map((e) => (
+            <CardButton key={e.id}>
+              <JournalItem title={e.title} date={e.date} text={e.text} />
+            </CardButton>
+          ))}
         </JournalList>
       </LeftPanel>
       <Body>
-        <input type="text" onChange={inputChange} />
+        <JournalForm addJournalItem={addJournalItem} />
       </Body>
     </div>
   );
