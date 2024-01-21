@@ -34,7 +34,7 @@ function App() {
         text: item.text,
         title: item.title,
         date: new Date(item.date),
-        id: Math.max(...(oldItems.map((i) => i.id) + 1)),
+        id: oldItems.length > 0 ? Math.max(...(oldItems.map((i) => i.id) + 1)) : 1,
       },
     ]);
   };
@@ -45,11 +45,15 @@ function App() {
         <Header />
         <JournaAddButton />
         <JournalList>
-          {items.map((e) => (
-            <CardButton key={e.id}>
-              <JournalItem title={e.title} date={e.date} text={e.text} />
-            </CardButton>
-          ))}
+          {items.length === 0 ? (
+            <p>You don't have any task</p>
+          ) : (
+            items.map((e) => (
+              <CardButton key={e.id}>
+                <JournalItem title={e.title} date={e.date} text={e.text} />
+              </CardButton>
+            ))
+          )}
         </JournalList>
       </LeftPanel>
       <Body>
