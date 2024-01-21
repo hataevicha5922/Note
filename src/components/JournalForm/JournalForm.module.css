@@ -1,0 +1,13 @@
+.journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.input {
+  border-radius: 5px;
+  background-color: darkgrey;
+}
+.invalid {
+  border: 2px solid red;
+  background-color: rgb(236, 201, 201);
+}

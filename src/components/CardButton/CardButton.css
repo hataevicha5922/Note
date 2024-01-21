@@ -10,6 +10,7 @@
   color: #fff;
   background-color: rgba(22, 12, 12, 0.349);
   text-align: start;
+  margin: 10px;
 }
 .card-button:hover {
   background-color: rgba(87, 61, 61, 0.349);

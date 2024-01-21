@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./JournalForm.css";
+import s from "./JournalForm.module.css";
 import { Button } from "../Button/Button";
 
 export const JournalForm = ({ addJournalItem }) => {
@@ -45,24 +45,30 @@ export const JournalForm = ({ addJournalItem }) => {
   };
 
   return (
-    <form className="journal-form" onSubmit={addJournalIten}>
+    <form className={s["journal-form"]} onSubmit={addJournalIten}>
       <input
         type="text"
         name="title"
-        style={{ border: formValidState.title ? null : "1px solid red" }}
+        className={`${s["input"]} ${formValidState.title ? "" : s["invalid"]}`}
       />
       <input
         type="date"
         name="date"
-        style={{ border: formValidState.date ? null : "1px solid red" }}
+        className={`${s["input"]} ${formValidState.date ? "" : s["invalid"]}`}
       />
-      <input type="text" name="tag" onChange={inputChange} value={inputData} />
+      <input
+        type="text"
+        name="tag"
+        onChange={inputChange}
+        value={inputData}
+        className={s["input"]}
+      />
       <textarea
         name="post"
         id=""
         cols={30}
         rows={10}
-        style={{ border: formValidState.post ? null : "1px solid red" }}
+        className={`${s["input"]} ${formValidState.post ? "" : s["invalid"]}`}
       ></textarea>
       <Button text="save" onClick={() => console.log("Save")} />
     </form>
